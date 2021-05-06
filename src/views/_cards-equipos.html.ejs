@@ -1,0 +1,26 @@
+<% equipos.forEach(equipo => { %>
+                    
+    <div class="blog-card alt">
+        <div class="meta">
+        <img src="<%=equipo.foto%>" class="card-img" alt="...">
+          <ul class="details">
+                <li class="author"><a><%=equipo.nombre%></a> </li>
+                  <ul>
+                    <li><a href="#"><p class="card-text"><%=%></p></a></li>
+                    <div class="br-sustitute"></div>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+        <div class="description">
+          <h1><%=equipo.nombre%></h1>
+          <h2><%=%></h2>
+          <p class="card-text"><%= equipo.description %></p>
+          <p class="read-more">
+            <a class = "button2" href="<%= equiposPath(jwt.encode(equipo.id, 'xxx')) %>">Ver perfil</a>
+          </p>
+        </div>
+    </div>
+
+  <%})%>
+  

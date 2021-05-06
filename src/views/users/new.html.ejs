@@ -1,0 +1,83 @@
+<%if (currentUser) {%>
+
+  <meta http-equiv="refresh" content="0; URL=/" />
+
+
+  <%} else{%>
+
+    
+    <form class="modal-content2" action="<%= createUserPath %>" method="post">
+        <div class="container">
+          <input type="hidden" name="value" id="value" value="0"/>
+          <h1>Registro: Jugador</h1>
+          <p></p>
+          <% if (locals.errors) { %>
+            <div class="errors">
+                <p>User no se pudo crear debido a los siguientes errores:</p>
+                <ul>
+                    <% errors.forEach(error => { %>
+                        <li> <%= error.path %>: <%= error.message %></li>
+                        <%console.log(error.message);%>
+                   <% }); %>
+                </ul>
+            </div>
+        <% } %>
+        
+          <label for="name">Nombre</label>
+          <input class="input_form" type="text" id="nombre" name="nombre" value="<%= user.nombre %>" 
+          placeholder="Nombre" required/>
+
+          <label for="username">Username</label>
+          <input class="input_form" type="text" id="username" name="username" value="<%= user.username %>" 
+          placeholder="Username" required/>
+
+          <label for="correo">Email</label>
+          <input class="input_form" type="text" id="correo" name="correo" value="<%= user.correo %>" 
+          placeholder="Email" required/>
+            
+          <label for="descripcion">Descripcion</label>
+          <input class="input_form" type="text" id="descripcion" name="descripcion" value="<%= user.descripcion %>" 
+          placeholder="Descripcion" required/>
+
+          <label for="foto">Foto</label>
+          <input type="file" id="foto" name="foto" value="<%=user.foto%>" />
+          <br>
+          <br>
+          <label for="telefono">Numero de Telefono</label>
+          <input class="input_form" type="text" id="telefono" name="telefono" value="<%= user.telefono %>" 
+          placeholder="Numero de Telefono" required/>
+
+          <label for="contrasena">Contraseña</label>
+          <input class="input_form" type="password" id="contrasena" name="contrasena" value="<%= user.contrasena %>" 
+          placeholder="Contraseña" required/>
+         
+          <!-- <div id="react-SignInBtn"></div> -->
+          
+          <div class="clearfix">
+              <button type="submit" class="signupbtn">Sign Up</button>
+          </div>
+
+       
+
+        </div>
+
+    </form>
+
+    <script>
+        const fileInput = document.querySelector("input[type='file']");
+
+        document.getElementById("foto").onchange = async e => {
+          const files = e.target.files;
+          const fileToUpload = files[0];
+
+          let data = new FormData();
+          data.append("file", fileToUpload);
+
+          const response = await fetch("/upload", {
+            method: "POST",
+            body: data,
+          });
+          const { url } = await response.json();
+        };
+    </script>
+<%}%>

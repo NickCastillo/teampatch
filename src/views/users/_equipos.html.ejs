@@ -1,0 +1,17 @@
+<div class="">
+    <div class=""">
+          
+          <!-- <h3> Equipos: </h3> -->
+          <% if (equipos.length) { %>
+            <ul>
+              <% equipos.forEach((equipo) => { %>
+                <li class="equipo">
+                  <p><%= equipo.nombre %></p>
+                </li>
+              <% }); %>
+            </ul>
+          <% } else {%>
+            <p>Este usuario no pertenece a ningun equipo.</p>
+            <%}%>
+    </div>
+</div>

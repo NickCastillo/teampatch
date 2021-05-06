@@ -1,0 +1,14 @@
+<h1>Cantidad de partidos: <%= partidos.length %></h1>
+<a href="<%= newPartidosPath %>"> Agregar Partido</a>
+<% partidos.forEach(partido => { %>
+    <div>
+        <h2> ID: <%= partido.id %></h2>
+        <p> Fecha: <%= (partido.fecha.getDate()+1)+"-"+ (partido.fecha.getMonth()+ 1) + "-" + partido.fecha.getFullYear() %></p>
+        <p> Hora:  <%= partido.hora %></p>
+        <p> Resultado:  <%= partido.resultado %></p>
+        <a href="<%= partidosPath(partido.id) %>"> Ver Más <br></a>
+        <a href="<%= deletePartidosPath(partido.id) %>"> Eliminar <br></a>
+
+    </div>
+<% }) %>
+

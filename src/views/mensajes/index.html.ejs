@@ -1,0 +1,13 @@
+Mensajes
+<p>cantidad de mensajes: <%= mensajes.length %></p>
+
+<h1>Mensaje:</h2>
+    <a href="<%=newMensajePath%>">Nuevo Mensaje</a>
+    <%mensajes.forEach(m => {%>
+        <div>
+            <h2><%=m.id%></h2>
+            <p><%=m.contenido%></p>
+            <a href="<%=mensajePath(1, m.id)%>">Ver mas<br></a>
+            <a href="<%=deleteMensajePath(m.id)%>">Eliminar</a>
+        </div>
+    <% }) %>

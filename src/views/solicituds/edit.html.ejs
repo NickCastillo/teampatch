@@ -1,0 +1,28 @@
+<h1>¿Que deseas editar?</h1>
+
+<%const id = solicitud.id%>
+<form method="post" action="<%= editSolicitudPath(String(id)) %>">
+    <% if (locals.errors) { %>
+        <div class="errors">
+            <p>Solicitud no se pudo editar  debido a los siguientes errores:</p>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li> <%= error.path %>: <%= error.message %></li>
+               <% }); %>
+            </ul>
+        </div>
+    <% } %>
+
+    <div class="field">
+        <label for="descripcion"> Descripcion </label>
+        <input type="text" name="descripcion" id="descripcion" value = "<%=solicitud.descripcion%>" />
+    </div>
+    <div class="field">
+        <label for="fecha"> Fecha </label>
+        <input type="date" name="fecha" id="fecha" value = "<%=solicitud.fecha%>" />
+    </div>
+    <div class="actions">
+        <input type="submit" value="Editar"/>
+    </div>
+</form> 
+

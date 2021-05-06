@@ -1,0 +1,37 @@
+.filterClass {
+    display: none;
+  }
+  
+  .show_filter {
+    display: block;
+  }
+  
+  .container_filter {
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  
+  /* Style the buttons */
+  .btn_filter {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color:white;
+    color:black;
+    cursor: pointer;
+  }
+  
+  .btn_filter:hover {
+    background-color: #ddd;
+  }
+  
+  .btn_filter.active {
+    background-color: rgb(229, 34, 74);
+    color: black;
+  }
+
+  .hr_filter {
+    height: 10px;
+    width: 50%;
+    background-color: black;
+  }

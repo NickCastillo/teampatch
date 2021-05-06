@@ -1,0 +1,48 @@
+
+<br><br>
+<div class="busqueda-title">Reservas:</div>
+<% if (reservas.length != 0) {%>
+    <div >
+        <br>
+        <div class="cardscroll">
+
+            <div class="card-container">
+                <div class="card-body ">
+                <% reservas.forEach(reserva => { %>
+                <div class="blog-card alt" >
+                    <div class="meta">
+                        <div class="photo" style="background-image: url(https://images.pexels.com/photos/262524/pexels-photo-262524.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"></div>
+                        <ul class="details">
+                            <li class="author"><a><%= %></a> </li>
+                                </li>
+                            </ul>
+                            </div>
+                        <div class="description">
+                            <h1><%= reserva.canchaId.descripcion %> </h1>
+                            <h2 class="light-yellow">Pendiente</h2>
+           
+                            <p>Fecha: <%= reserva.fecha %> </p>
+                            <p >Hora: <%= reserva.hora %>:00 Hrs - <%= parseInt(reserva.hora) + 1 %>:00 Hrs</p>
+                            <form method="post" action="<%= aceptarPath %>" >
+                                <input name="_method" type="hidden" value="patch">
+                                <input name="reserva_id" type="hidden" value="<%= reserva.id %>">
+                                <button class="button_pop aut\"  type="submit">Aceptar</button>
+                              </form>
+                            <form method="post" action="<%= rechazarPath %>" >
+                                <input name="_method" type="hidden" value="patch">
+                                <input name="reserva_id" type="hidden" value="<%= reserva.id %>">
+                                <button class="button_pop width-auto red-bg" type="submit">Rechazar</button>
+                              </form>
+                        </div>
+                    </div>
+                </div>
+                <%})%>
+                </div>
+            </div>
+    
+        </div>
+    </div>   
+    
+<% } else {%>
+    <div class="profile-subtitle">No tienes ninguna solicitud</div>
+<%}%>

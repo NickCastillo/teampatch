@@ -1,0 +1,40 @@
+!-- ESTE CODIGO ESTA MIENTRAS VEMOS LAS DEPENDENCIES
+<div class="solicituds">
+    <h2><%= //solicituds.length %> solicitudes enviadas</h2>
+    <% //if (solicituds.length) { %>
+      <ul>
+        <% //olicituds.forEach((solicitud) => { %>
+          <li class="solicitud">
+            <h4><%= //solicitud.estado %></h4>
+          </li>
+        <%// }); %>
+      </ul>
+    <% //} %>
+  </div>
+
+  <div class="mensajes">
+    <h2><%=// mensajes.length %> mensajes enviados</h2>
+    <% //if (mensajes.length) { %>
+      <ul>
+        <% //mensajes.forEach((mensaje) => { %>
+          <li class="mensaje">
+            <h4><%= //mensaje.contenido %></h4>
+          </li>
+        <% //}); %>
+      </ul>
+    <% //} %>
+  </div>
+
+  <div class="comentarios">
+    <h2><%= //comentarios.length %> comentarios enviados</h2>
+    <% if //(comentarios.length) { %>
+      <ul>
+        <% //comentarios.forEach((comentario) => { %>
+          <li class="mensaje">
+            <h4><%=// comentario.contenido %></h4>
+          </li>
+        <% //}); %>
+      </ul>
+    <% //} %>
+  </div>
+  -->

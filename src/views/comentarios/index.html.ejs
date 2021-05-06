@@ -1,0 +1,13 @@
+<h1> Comentarios </h1>
+
+<a href="<%=newComentarioPath%>"> Nuevo Comentario </a>
+
+<p> Cantidad de comentarios: <%= comentarios.length%></p>
+<% comentarios.forEach(comentario => { %>
+    <div>
+    <h2> ID de Comentario: <%= comentario.id %> </h2>
+    <p> <%= comentario.contenido %> </p>
+    <a href="<%= comentarioPath(comentario.id)%>">Ver mas <br></a>
+    <a href="<%= deleteComentariosPath(comentario.id) %>"> Eliminar <br></a>
+    </div>
+    <%})%>

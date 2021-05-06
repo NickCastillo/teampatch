@@ -1,0 +1,30 @@
+                  <% recintos_deportivos.forEach(recinto_deportivo => { %>
+                    <% if (currentRecinto && jwt.decode(currentRecinto.id, 'xxx') == recinto_deportivo.id) {%>
+                      <%} else {%>
+                      <div class="blog-card alt">
+                          <div class="meta">
+                            <div class="photo" style="background-image: url(https://images.pexels.com/photos/66323/tennis-ball-sport-yellow-66323.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"></div>
+                            <ul class="details">
+                                  <li class="author"><a><%=recinto_deportivo.nombre%></a> </li>
+                                    <ul>
+                                      <li><a href="#"><p class="card-text"><%=recinto_deportivo.telefono%></p></a></li>
+                                      <div class="br-sustitute"></div>
+                                      <li><a href="#"><p class="card-text"><%=recinto_deportivo.correo%></p></a></li>
+                                      <div class="br-sustitute"></div>
+                                      <li><a href="#"><p class="card-text"><%=recinto_deportivo.ubicacion%></p></a></li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </div>
+                          <div class="description">
+                            <h1><%=recinto_deportivo.nombre%></h1>
+                            <h2><%=recinto_deportivo.correo%></h2>
+                            <p class="card-text"><%= recinto_deportivo.bio %></p>
+                            <p class="read-more">
+                              <a class = "button2" href="<%=recinto_deportivoPath(jwt.encode(recinto_deportivo.id, 'xxx'))%>">Ver perfil</a>
+                            </p>
+                          </div>
+                      </div>
+                    <%}%>
+                  <%})%>
+                  

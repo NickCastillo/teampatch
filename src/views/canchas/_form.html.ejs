@@ -1,0 +1,47 @@
+<form method="post" action="<%= createCanchaPath %>">
+    <% if (locals.errors){ %>
+        <div class="errors">
+            <p> Cancha no pudo ser creada debido a los siguientes errores:</p>
+        <ul>
+            <% errors.forEach(error => { %>
+                <li><%= error.path %>: <%= error.message %></li>
+            <%})%>
+        </ul>
+        </div>
+    <% } %>
+    
+    <div class="field">
+        <label for="largo"> Lenght </label>
+        <input type="text" id="largo" name="largo"/>
+    </div>
+
+    <div class="field">
+        <label for="ancho"> Width </label>
+        <input type="text" id="ancho" name="ancho"/>
+    </div>
+
+    <div class="field">
+        <label for="descripcion"> Description </label>
+        <input type="text" id="descripcion" name="descripcion"/>
+    </div>
+
+    <div class="field">
+        <label for="precio"> Price </label>
+        <input type="text" id="precio" name="precio"/>
+    </div>
+
+    <div class="field">
+        <label for="disponible"> Status </label>
+        <input type="text" id="disponible" name="disponible"/>
+    </div>
+
+    <div class="field">
+        <label for="foto"> Picture </label>
+        <input type="text" id="foto" name="foto"/>
+    </div>
+
+    <div class="actions">
+        <input type="submit" value="Create"/>
+    </div>
+
+</form>

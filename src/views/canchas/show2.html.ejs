@@ -1,0 +1,29 @@
+<div class="br-big-sustitute"></div>
+<div class="br-big-sustitute"></div>
+
+<div class="container-grid40">
+        <div class=''>
+        </div>
+        <div class=''>
+            <h9 class="cookie-font main-title2"><%= cancha.descripcion %></h9>
+            <h3 class="profile-subtitle">Precio: $<%= cancha.precio%></h3>
+        </div>
+    </div>
+    
+    <div class="container-grid7">
+      <div class=''>
+        <img src="<%=cancha.foto%>" alt="Foto" width="600">
+      </div>
+    
+      <div class=''>
+    
+        <p class="texto"> Dimensiones de la cancha: <%=cancha.largo%> x <%=cancha.ancho%> </p>
+    
+        <% if (cancha.disponible){%>
+          <p class="texto"> La cancha se encuentra disponible</p>
+        <%} else {%>
+        <p class="texto"> La cancha no se encuentra disponible</p>  
+        <%}%>
+      </div>
+    
+    </div>

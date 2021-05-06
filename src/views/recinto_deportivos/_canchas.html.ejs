@@ -1,0 +1,52 @@
+<% if (canchas.length) { %>
+    <h4 class="profile-subtitle">Canchas:</h4>
+
+            <div class="cardscroll">
+
+                <div class="card-container">
+                    <div class="card-body">
+                        <% canchas.forEach((cancha) => {%>
+                            <div class="blog-card alt">
+                                <div class="meta">
+                                  <div class="photo" style="background-image: url(<%=cancha.foto%>)"></div>
+                                  <ul class="details">
+                                        <li class="author"><a><%=cancha.descripcion%></a> </li>
+                                          <ul>
+                                            <li><a href="#"><p class="card-text">Largo: <%=cancha.largo%></p></a></li>
+                                            <br>
+                                            <li><a href="#"><p class="card-text">Ancho: <%=cancha.ancho%></p></a></li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                <div class="description">
+                                  <h1><%=cancha.descripcion%></h1>
+                                  <% if (cancha.disponible) {%>
+                                    <h2 class="card-text"> Disponible </h2>
+                                  <%} else {%>
+                                    <h2 class="card-text"> No disponible </h2>
+
+                                  <%}%>
+                                  <p class="card-text"> Precio: <%= cancha.precio %></p>
+
+                                  <p class="card-text"> Largo: <%= cancha.largo %></p>
+                                  <p class="card-text"> Ancho: <%= cancha.ancho %></p>
+                                  <p class="read-more">
+                                    <% if (currentRecinto){%>
+                                      <a class = "button2" href="<%=canchaPath2(jwt.encode(cancha.id, 'xxx'))%>">Ver Horarios</a>
+                                    <%} else if (currentUser) {%>
+                                      <a class = "button2" href="<%=canchaPath(jwt.encode(cancha.id, 'xxx'))%>">Ver Horarios</a>
+
+                                      <%}%>
+                                    </p>
+                                </div>
+                            </div>
+                        <%});%>
+                    </div>
+                </div>      
+            </div>
+    </div> 
+           
+    <% } else {%>
+        <p>No hay canchas disponibles</p>
+        <% } %>

@@ -1,0 +1,29 @@
+<form method="post" action="<%= createComentarioPath %>">
+    <% if (locals.errors){ %>
+        <div class="errors">
+            <p> Comentario no pudo ser creado debido a los siguientes errores:</p>
+        <ul>
+            <% errors.forEach(error => { %>
+                <li><%= error.path %>: <%= error.message %></li>
+            <%})%>
+        </ul>
+        </div>
+    <% } %>
+    
+    <div class="field">
+        <label for="contenido"> Contenido </label>
+        <textarea name="contenido" id="contenido" rows="4" cols="30"> </textarea>
+    </div>
+
+    <div class="field">
+        <label for="userId"> Emisor </label>
+        <input type="text" id="userId" name="userId"/>
+    </div>
+
+    <!-- Tambien hay un timestamp pero en vola usamos solo el atributo createdAt -->
+
+    <div class="actions">
+        <input type="submit" value="Create"/>
+    </div>
+
+</form>

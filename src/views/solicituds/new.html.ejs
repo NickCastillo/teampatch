@@ -1,0 +1,41 @@
+<div class="busqueda-title"> Nueva Solicitud</div>
+
+<div class="tp-container white">
+  <div class="input-container input_1 ">
+      <form method="post" action="<%= createSolicitudPath %>">
+        <% if (locals.errors) { %>
+          <div class="errors">
+            <p>La solicitud no se pudo crear debido a los siguientes errores:</p>
+            <ul>
+              <% errors.forEach(error => { %>
+                <li><%= error.path %>: <%= error.message %></li>
+              <% }); %>
+            </ul>
+          </div>
+        <% } %>
+
+        <div class="field">
+            <label for="name" class="busqueda-subtitle">Estado: </label>
+            <br>
+            <input type="number" id="estado" name="estado" value="<%= solicitud.estado %>" />
+          </div>
+
+          <div class="field">
+            <label for="name" class="busqueda-subtitle" >Descripción: </label>
+            <br>
+            <textarea type="text" name="descripcion" id="descripcion" rows="4" cols="30"><%= solicitud.descripcion %></textarea>
+          </div>
+
+          <div class="field">
+            <label for="name" class="busqueda-subtitle">Fecha: </label>
+            <br>
+            <input type="date" id="fecha" name="fecha" value="<%= solicitud.fecha %>" />
+          </div>
+    
+        </form>
+  </div>
+</div>
+
+<div class="actions">
+  <input type="submit" value="Crear" />
+</div>

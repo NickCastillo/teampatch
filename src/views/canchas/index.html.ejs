@@ -1,0 +1,150 @@
+<% if(currentRecinto){%>
+
+  <h1 class="busqueda-title">Busqueda:</h2> 
+
+    <div class="container-grid40">    
+        
+      <div class="container-center" >     
+            
+        <button class="button_pop width-auto" onclick="document.getElementById('id01').style.display='block'" >Crear cancha</button>
+          <div id="id01" class="modal_pop">
+            <form class="modal-content animate" action="<%=createCanchaPath%>" method="post">
+              <div class="container">
+
+                <label for="largo"><b>Largo</b></label>
+                <input class="input_pop" type="text" 
+                placeholder="Ingresa el largo de la cancha" name="largo" value="<%= cancha.largo %>" required>
+
+                <label for="ancho"><b>Ancho</b></label>
+                <input class="input_pop" type="text" 
+                placeholder="Ingresa el ancho de la cancha" name="ancho" value="<%= cancha.ancho %>" required>
+
+                <label for="precio"><b>Precio</b></label>
+                <input class="input_pop" type="text" 
+                placeholder="Precio para arrendar la cancha" name="precio" value="<%= cancha.precio %>" required>
+
+                <label for="descripcion"><b>Descripcion</b></label>
+                <input class="input_pop" type="text" 
+                placeholder="Informacion sobre la cancha" name="descripcion" value="<%= cancha.descripcion %>" required>
+
+                <label for="foto">Foto</label>
+                <input type="file" id="foto" name="foto"/>
+
+                <input type="hidden" name="disponible" value="<%= true%>">
+                <input type="hidden" name="recintoDeportivoId" value="<%=jwt.decode(currentRecinto.id, 'xxx')%>">
+
+              </div>
+
+              <div class="container white-bg">
+                <button type="submit" class="button_pop">Crear cancha</button>
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn_pop">Cancel</button>
+              </div>
+            </form>
+          </div>
+      </div>    
+  
+      <div >
+        <div class="br-sustitute"></div>
+
+        <% if (canchas.length) { %>
+            <h4 class="profile-subtitle">Canchas:</h4>
+        
+                    <div class="cardscroll">
+        
+                        <div class="card-container">
+                            <div class="card-body">
+                                <% canchas.forEach((cancha) => {%>
+                                    
+                                    <div class="blog-card alt">
+                                        <div class="meta">
+                                          <div class="photo" style="background-image: url(<%=cancha.foto%>)"></div>
+                                          <ul class="details">
+                                                <li class="author"><a><%=cancha.descripcion%></a> </li>
+                                                  <ul>
+                                                    <li><a href="#"><p class="card-text">Largo: <%=cancha.largo%></p></a></li>
+                                                    <br>
+                                                    <li><a href="#"><p class="card-text">Ancho: <%=cancha.ancho%></p></a></li>
+                                                  </ul>
+                                                </li>
+                                              </ul>
+                                            </div>
+                                        <div class="description">
+                                          <h1>Cancha ID: <%=cancha.id%></h1>
+                                          <h2><%=cancha.descripcion%></h2>
+                                          <p class="card-text"> Precio: <%= cancha.precio %></p>
+                                          <p class="card-text"> Largo: <%= cancha.largo %></p>
+                                          <p class="card-text"> Ancho: <%= cancha.ancho %></p>
+                                          <p class="read-more">
+                                            <a class = "button2" href="<%=canchaPath2(jwt.encode(cancha.id, 'xxx'))%>">Ver Horarios</a>
+                                            <a class = "button2" href="<%=deleteCanchasPath(jwt.encode(cancha.id, 'xxx'))%>">Eliminar</a>
+
+                                          </p>                                          
+                                        </div>
+                                    </div>
+                                <%});%>
+                            </div>
+                        </div>      
+                    </div>
+            </div> 
+                   
+            <% } else {%>
+                <p>No hay canchas disponibles</p>
+                <% } %>
+    
+        </div>
+      </div>
+  
+  </div>
+    
+  <%}%>
+
+  <script>
+    const fileInput = document.querySelector("input[type='file']");
+    document.getElementById("foto").onchange = async e => {
+      const files = e.target.files;
+      const fileToUpload = files[0];
+
+      let data = new FormData();
+      data.append("file", fileToUpload);
+
+      const response = await fetch("/upload", {
+        method: "POST",
+        body: data,
+      });
+      const { url } = await response.json();
+      console.log(url);
+    };
+    
+    function w3AddClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+      }
+    }
+    
+    function w3RemoveClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      
+      for (i = 0; i < arr2.length; i++) {
+        while (arr1.indexOf(arr2[i]) > -1) {
+          arr1.splice(arr1.indexOf(arr2[i]), 1);     
+        }
+      }
+      element.className = arr1.join(" ");
+      
+    }
+    
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn_filter");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function(){
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+      });
+    }
+    </script>

@@ -1,0 +1,98 @@
+<%if (currentUser) {%>
+<div class="br-big-sustitute"></div>
+<div class="container-grid3">
+
+    <div id="perfiles-app" data-user-foto = "<%= usuario.foto%>"></div>
+    <div class=''>
+        <h1 class="profile-title"><%= usuario.nombre %></h1>
+        <h3 class="profile-subtitle"><%= usuario.username %></h1>
+    </div>
+
+</div>
+
+<div class="container-grid1">    
+
+
+    <div class="tp-container">            
+        <div class="profile-subtitle padding-top1">
+            Informacion
+        </div>
+        <p> <span> <i class="fas icon-little fa-phone-alt"></i> </span> <%= usuario.telefono%></p>
+        <p> <span> <i class="fas icon-little fa-envelope"></i> </span> <%= usuario.correo %></p>
+        <% if (jwt.decode(currentUser.id, 'xxx') == usuario.id) {%>
+            <h5><a href="<%=updateUsuariosPath(currentUser.id)%>" class="fas icon-little new-solicitud-icon">  <span> <i class="fas icon-little fa-tools"></i></span> Editar perfil </a></h5>
+          <%}%>
+
+    </div>
+
+
+    <div class="tp-container">            
+        <div class="profile-subtitle padding-top1">
+            Descripcion
+        </div>
+        <p class="font-size22"> <%= usuario.descripcion%></p>
+    </div>
+</div>
+
+<div class="container-grid1">  
+
+        <div class=""></div> 
+
+    <div class="tp-container">
+      <div class="profile-subtitle padding-top1">
+          <span> <i class="fas icon-container fa-users"></i> </span> Equipos
+      </div>
+    
+      <%- include('_equipos')%>   
+
+    </div>
+
+</div>
+</div>
+<%} if (currentRecinto) {%>
+    <br>
+<div class="container-grid3">
+
+    <div id="perfiles-app" data-user-foto = "<%= usuario.foto%>"></div>
+    <div class=''>
+        <h1 class="profile-title"><%= usuario.nombre %></h1>
+        <h3 class="profile-subtitle"><%= usuario.username %></h1>
+    </div>
+
+</div>
+
+<div class="container-grid1">    
+
+
+    <div class="tp-container">            
+        <div class="profile-subtitle padding-top1">
+            Informacion
+        </div>
+        <p> <span> <i class="fas icon-little fa-phone-alt"></i> </span> <%= usuario.telefono%></p>
+        <p> <span> <i class="fas icon-little fa-envelope"></i> </span> <%= usuario.correo %></p>
+    </div>
+
+
+    <div class="tp-container">            
+        <div class="profile-subtitle padding-top1">
+            Descripcion
+        </div>
+        <p class="font-size22"> <%= usuario.descripcion%></p>
+    </div>
+</div>
+
+<div class="container-grid1">  
+
+
+    <div class="tp-container">
+      <div class="profile-subtitle padding-top1">
+          <span> <i class="fas icon-container fa-users"></i> </span> Equipos
+      </div>
+    
+      <%- include('_equipos')%>   
+
+    </div>
+
+</div>
+</div>
+    <%}%>

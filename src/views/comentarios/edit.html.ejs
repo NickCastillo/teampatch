@@ -1,0 +1,31 @@
+<h1>¿Que deseas editar?</h1>
+<% 
+const array = Object.keys(comentario.dataValues);
+const len = Object.keys(comentario.dataValues).length - 3;
+%>
+
+<form method="post" action="<%= editComentariosPath(comentario.id) %>">
+    <% if (locals.errors) { %>
+        <div class="errors">
+            <p>El comentario no se pudo editar debido a los siguientes errores:</p>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li> <%= error.path %>: <%= error.message %></li>
+               <% }); %>
+            </ul>
+        </div>
+    <% } %>
+    
+    <select name="drop1" id="Select1">
+        <% for (var i = 1; i<len; i++) { %>
+            <option value="<%= array[i] %>"> <%= array[i] %> </option>
+        <% } %>
+    </select>
+    
+    <div class="field">
+        <input type="text" name="cambio" id="cambio"/>
+    </div>
+    <div class="actions">
+        <input type="submit" value="Editar"/>
+    </div>
+</form> 

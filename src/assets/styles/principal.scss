@@ -1,0 +1,129 @@
+.cookie-font{
+    font-family: 'Cookie', cursive;
+    font-size: 80px;
+    margin: 0 0 0 0;
+  }
+  
+  .main-title{
+    font-size: 120px;
+    color: white;
+    font-family: 'Cookie', bold;
+  }
+
+  .main-title2{
+    font-size: 100px;
+    color: white;
+    font-family: 'Cookie', bold;
+  }
+  
+  .paint-pink{
+    color: #ED1D5A;
+  }
+  
+  .landing-title{
+    margin-top: 20%;
+    color: #ED1D5A;
+  }
+  
+  .landing-subtitle{
+    font-size: 25px;
+    margin-top: -20px;
+    font-weight: 800;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  .landing-subsubtitle{
+    text-align: justify; 
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 20%;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  .cardscroll {
+    display: grid;
+    overflow: scroll;
+    width: 100%;
+    height: 650px;
+  }
+  .cardscroll-mati {
+    display: grid;
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+  }
+
+.no-margin-vert{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.no-padding-top{
+    padding-top: 0;
+}
+
+.column-3 {
+    float: left;
+    margin: 0;
+  }
+  
+.right, .middle {
+    width: 42.5%
+  }
+  
+.left {
+    width: 15%;
+  }
+
+.column-2 {
+    float: left;
+    margin: 10%;
+    display: grid;
+    flex-wrap: wrap;
+  }
+  
+.right50{
+  width: 40%;
+  margin: 0;
+}
+  
+.left50{
+  width: 40%;
+  margin: 0;
+}
+  
+  /* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table-column;
+    clear: both;
+  }
+
+.row-height{
+    height: 500
+}
+
+.index-subtitle{
+    padding-left: 20px;
+    font-size: 30px;
+    color: white
+}
+
+.margin-right{
+  margin-right: 10px;
+}
+.index-subtitle-container{
+  padding-left: 60px;
+}
+.home-container{
+  display: flex;
+
+  @media screen and (max-width: 1000px){
+    display: grid;
+    grid-template-columns: 150%;
+    
+  }
+
+}

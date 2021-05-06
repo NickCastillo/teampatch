@@ -1,0 +1,16 @@
+<div class="card"">
+        <div class="card-body">
+            
+              <% if (partidos.length) { %>
+                <ul>
+                  <% partidos.forEach((partido) => { %>
+                    <ul class="list-group list-group-flush">
+                            <p> Fecha: <%= (partido.fecha.getDate()+1)+"-"+ (partido.fecha.getMonth()+ 1) + "-" + partido.fecha.getFullYear() %></p>
+                    </ul>
+                  <% }); %>
+                </ul>
+              <% } else {%>
+                <h3>No es miembro de ningun equipo</h3>
+                <%}%>
+        </div>
+    </div>

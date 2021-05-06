@@ -1,0 +1,46 @@
+<%if (currentUser) {%>
+    <meta http-equiv="refresh" content="0; URL=/" />
+  
+    <%} else{%>
+  
+      
+    <br><br><br><br><br>
+    <div class="d-flex justify-content-center">
+      <h1 class="cookie-font">¿Con que cuenta deseas entrar?</h1>
+      
+    </div>
+    <br><br><br>
+        
+    <div class="row">
+
+        <div class="container-grid5050">
+            <div class="container-button">
+                <div id="btn-whoareyou">
+                        <span id="jugador-boton" class="noselect">Un Jugador</span>
+                        
+                        <div id="jugador-boton"> </div>
+
+                        <script>
+                            document.getElementById("jugador-boton").onclick = function() {
+                                location.href = "../session/new-user";
+                                };
+                        </script>
+                </div>          
+            </div> 
+            
+            <div class="container-button">      
+                <div id="btn-whoareyou">
+                    <span id=recinto-boton class="noselect">Un Recinto Deportivo</span>
+                    <div id="recinto-boton"></div>
+    
+                    <script>
+                    document.getElementById("recinto-boton").onclick = function() {
+                        location.href = "../session/new-recinto";
+                    };
+                    </script>
+                </div>
+            </div> 
+        </div>
+    </div> 
+  
+    <%}%>

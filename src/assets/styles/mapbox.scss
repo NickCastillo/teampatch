@@ -1,0 +1,58 @@
+#map {
+    height: 100%;
+    margin-top: 6%;
+    margin: 30px;
+    border-radius: 15px;
+  }
+
+  .map-toggle{
+    color: white;
+    margin-left: 3px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  .map-toggle:focus{
+    color: black;
+  }
+  
+  .mapboxgl-popup {
+    max-width: 400px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+    
+
+  input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #ED1C5B;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+  
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    //margin: 0;
+    padding: 0;
+  }
+

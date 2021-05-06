@@ -1,0 +1,123 @@
+
+<br><br>
+<div class="busqueda-title">Mis Solicitudes:</div>
+
+<% if (solicituds.length != 0) {%>
+    <div class="container-grid40">    
+    
+        <div >     
+          <br>       
+            <div class="profile-subtitle padding-top1">
+                Filtro
+                <hr/>
+            </div>
+            <div id="myBtnContainer">
+              <a class="profile-subtitle" >Deporte:</a>
+              <button class="btn_filter active" onclick="filterSelection('all')" > Show all</button>
+              <button class="btn_filter" onclick="filterSelection('1')"> Aceptado</button>
+              <button class="btn_filter" onclick="filterSelection('0')"> Pendiente</button>
+              <button class="btn_filter" onclick="filterSelection('2')"> Rechazado</button>
+              <button class="btn_filter" onclick="filterSelection('3')"> Cancelado</button>
+              
+            </div>
+        </div>    
+    
+        <div >
+          <br>
+            <div class="cardscroll">
+    
+              <div class="card-container">
+                  <div class="card-body ">
+                    <% solicituds.forEach(solicitud => { %>
+                      <div class="filterClass <%=solicitud.estado%>">
+                        <div class="blog-card alt filterClass <%=solicitud.estado%>">
+                            <div class="meta">
+                            <div class="photo" style="background-image: url(https://images.pexels.com/photos/262524/pexels-photo-262524.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)"></div>
+                            <ul class="details">
+                                <li class="author"><a><%= %></a> </li>
+                                    </li>
+                                </ul>
+                                </div>
+                            <div class="description">
+                                <h1><%=solicitud.equipoId.nombre%></h1>
+                                <% if (solicitud.estado==0) { %>
+                                    <h2 class="light-yellow">Pendiente</h2>
+                                <% } else if (solicitud.estado==1) { %>
+                                    <h2 class="green">Aceptado</h2>
+                                <% } else if (solicitud.estado==3) { %>
+                                    <h2 class="blue">Cancelado por usuario</h2>
+                                <% } else { %>
+                                    <h2 class="red">Rechazado</h2>
+                                <% } %>
+                                <p>Fecha: <%=solicitud.createdAt.getDate()%>/<%=solicitud.createdAt.getMonth() +1 %>/<%=solicitud.createdAt.getFullYear()%></p>
+                                <p >Hora: <%=solicitud.createdAt.getHours()%>:<%=solicitud.createdAt.getMinutes()%>%></p>
+                                <p class="card-text"><%= solicitud.descripcion %></p>
+                                <% if (solicitud.estado==0) { %>
+                                <form method="post" action="<%= rechazarPath %>" class="read-more">
+                                    <input name="_method" type="hidden" value="patch">
+                                    <input name="id" type="hidden" value="<%= solicitud.id %>">
+                                    <button class="button_pop red-bg width-auto" type="submit">Cancelar</button>
+                                  </form>
+                                <% } %>
+                            </div>
+                        </div>
+                      </div>
+                    <%})%>
+                </div>
+              </div>
+        
+          </div>
+        </div>
+    
+    </div>
+      
+    <script>
+      filterSelection("all")
+      function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("filterClass");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+          w3RemoveClass(x[i], "show_filter");
+          if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show_filter");
+        }
+      }
+      
+      function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+        }
+      }
+      
+      function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        
+        for (i = 0; i < arr2.length; i++) {
+          while (arr1.indexOf(arr2[i]) > -1) {
+            arr1.splice(arr1.indexOf(arr2[i]), 1);     
+          }
+        }
+        element.className = arr1.join(" ");
+        
+      }
+      
+      var btnContainer = document.getElementById("myBtnContainer");
+      var btns = btnContainer.getElementsByClassName("btn_filter");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function(){
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
+      </script>
+   
+    
+<% } else {%>
+    <div class="profile-subtitle">No tienes ninguna solicitud</div>
+<%}%>

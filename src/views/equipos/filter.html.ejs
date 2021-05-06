@@ -1,0 +1,169 @@
+<h1 class="busqueda-title">Busqueda:</h2> 
+
+  <button class="button_pop width-auto" onclick="document.getElementById('id01').style.display='block'">Crear equipo</button>
+          <div id="id01" class="modal_pop">
+            <form class="modal-content animate" action="<%=createEquiposPath%>" method="post">
+              <div class="container">
+                <label for="nombre"><b>Nombre</b></label>
+                <input class="input_pop" type="text" 
+                placeholder="Ingresa un nombre" name="nombre" value="<%= equipo.nombre %>" required>
+
+                <label for="description"><b>Descripcion</b></label>
+                <input class="input_pop" type="text" 
+                placeholder="Ingresa una descripcion" 
+                name="description" value="<%= equipo.description%>" required>
+
+                <input type="hidden" name="capitan" value="<%= jwt.decode(currentUser.id, 'xxx')%>">
+
+                <input type="hidden" name="horario" value="<%= jwt.decode(currentUser.id, 'xxx')%>">
+
+                <label for="foto">Foto</label>
+                <input type="file" id="foto" name="foto"/>
+
+                <br>
+                <br>
+                <label for="deporteId">Deporte:</label>
+                <select name="deporteId">
+                  <% deportes.forEach(d => { %>
+                    <option value="<%= d.id %>"><%= d.nombre %></option>
+                  <% })%>
+                </select>
+
+              </div>
+
+              <div class="container white-bg">
+                <button type="submit" class="button_pop">Crear equipo</button>
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn_pop">Cancel</button>
+              </div>
+            </form>
+          </div>
+  
+  <% if (size != 0) { %>
+    <div class="container-grid40">    
+    
+      <div >     
+        <div class="br-sustitute"></div>
+      
+          <div class="profile-subtitle padding-top1">
+              Filtro
+            <hr/>
+          </div>
+          <div id="myBtnContainer">
+            <a class="profile-subtitle" >Deporte:</a>
+            <button class="btn_filter active" onclick="filterSelection('all')" > Show all</button>
+            <% deportes.forEach(async deporte => { %>
+              <button class="btn_filter" onclick="filterSelection('<%= deporte.nombre %>')"> <%= deporte.nombre %></button>
+            <%})%>
+          </div>
+      </div>    
+
+      <div >
+        <div class="br-sustitute"></div>
+
+          <div class="profile-subtitle padding-top1"> 
+              Mis Equipos:
+          </div>
+          <div class="cardscroll">
+  
+            <div class="card-container">
+                <div class="card-body ">
+                <% equipos.forEach(async equipo => { %>
+              <div class="filterClass <%=equipo.deporteId.nombre%>">         
+                <div class="blog-card alt filterClass <%=equipo.deporteId.nombre%>" >
+                    <div class="meta">
+                    <!--<img src="<%=equipo.foto%>" class="card-img" alt="...">-->
+                    <div class="photo" style="background-image: url(<%=equipo.foto%>)"></div>
+                      <ul class="details">
+                          <li class="author"><a><%=equipo.nombre%></a> </li>
+                            <h4>Miembros:</h4>
+                            
+                              <ul>
+                                          
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                    <div class="description">
+                      <h1><%=equipo.nombre%></h1>
+                      <h2><%=equipo.deporteId.nombre%></h2>
+                      <p class="card-text"><%= equipo.description %></p>
+                      <p class="read-more">
+                        <a class="button2" href="<%= equiposPath(jwt.encode(equipo.id, 'xxx')) %>">Ver perfil</a>
+                      </p>
+                    </div>
+                </div>
+              </div>    
+              <%})%>
+              </div>
+            </div>
+      
+        </div>
+      </div>
+  
+  </div>
+    
+  <% } else { %>
+    <h1 class="profile-subtitle">Todavía no tienes equipos creados</h1>
+  <% } %>
+
+  <script>
+    filterSelection("all")
+    function filterSelection(c) {
+      var x, i;
+      x = document.getElementsByClassName("filterClass");
+      if (c == "all") c = "";
+      for (i = 0; i < x.length; i++) {
+        w3RemoveClass(x[i], "show_filter");
+        if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show_filter");
+      }
+    }
+    
+    function w3AddClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+      }
+    }
+    
+    function w3RemoveClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      
+      for (i = 0; i < arr2.length; i++) {
+        while (arr1.indexOf(arr2[i]) > -1) {
+          arr1.splice(arr1.indexOf(arr2[i]), 1);     
+        }
+      }
+      element.className = arr1.join(" ");
+      
+    }
+    
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn_filter");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function(){
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+      });
+    }
+
+      const fileInput = document.querySelector("input[type='file']");
+
+      document.getElementById("foto").onchange = async e => {
+        const files = e.target.files;
+        const fileToUpload = files[0];
+
+        let data = new FormData();
+        data.append("file", fileToUpload);
+
+        const response = await fetch("/upload", {
+          method: "POST",
+          body: data,
+        });
+        const { url } = await response.json();
+      };
+    </script>

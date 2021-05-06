@@ -1,0 +1,121 @@
+<h1 class="busqueda-title">Busqueda:</h2> 
+
+<%if (currentUser) {%>
+  <div class="container-grid40">  
+    <div>
+      <br>   
+      <div class="profile-subtitle padding-top1"> 
+        Filtro:
+        <hr/>
+      </div>
+      <input class="border-radius10" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+
+    </div>  
+    <div>
+      <div class="profile-subtitle padding-top1"> 
+        Jugadores:
+      </div>
+      <div class="col-sm">
+
+        <div class="cardscroll">
+
+            <div class="card-container">
+                <div class="card-body no-padding-top">
+                  <%users.forEach(user => {%>
+                    <%if( jwt.encode(user.id, 'xxx') != currentUser.id){%>
+                    
+                    <div class="blog-card" name="filter">
+                      <input type="hidden" name="<%=user.nombre%>"/>
+      
+                        <div class="meta">
+                          <div class="photo" style="background-image: url(<%=user.foto%>)"></div>
+                          <ul class="details">
+                            <li class="author"><a><%=user.nombre%></a> </li>
+                              <ul>
+                                <li><a href="#"><p class="card-text"><%=user.correo%></p></a></li>
+                                <br>
+                                <li><a href="#"><p class="card-text"><%=user.telefono%></p></a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="description">
+                          <h1><%=user.nombre%></h1>
+                          <h2><%=user.username%></h2>
+                          <p> <%=user.descripcion %></p>
+                          <p class="read-more">
+                            <a class = "button2" href="<%=userPath(jwt.encode(user.id, 'xxx'))%>">Ver pefil</a>
+                            <h7><a class = "button2" href="<%=chatPath(currentUser.id, jwt.encode(user.id, 'xxx'))%>">Chatear</a></h7>
+                          </p>
+                        </div>
+
+                      </div>
+                      <% } %>
+                  <% }) %>
+                </div>
+            </div>      
+        </div>
+      </div>
+  </div>
+  <%} else if (currentRecinto) {%>
+      <div class="col-sm">
+
+        <div class="cardscroll">
+
+            <div class="card-container">
+                <div class="card-body">
+                  <%users.forEach(user => {%>
+                          
+                    <div class="blog-card">
+    
+                        <div class="meta">
+                          <div class="photo" style="background-image: url(<%=user.foto%>)"></div>
+                          <ul class="details">
+                            <li class="author"><a><%=user.nombre%></a> </li>
+                              <ul>
+                                <li><a href="#"><p class="card-text"><%=user.correo%></p></a></li>
+                                <br>
+                                <li><a href="#"><p class="card-text"><%=user.telefono%></p></a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="description">
+                          <h1><%=user.nombre%></h1>
+                          <h2><%=user.username%></h2>
+                          <p> <%=user.descripcion %></p>
+                          <p class="read-more">
+                            <a class = "button2" href="<%=userPath(jwt.encode(user.id, 'xxx'))%>">Ver pefil</a>
+                          </p>
+                        </div>
+                      </div>
+                  <% }) %>
+                </div>
+            </div>      
+
+
+        </div>
+        
+    </div>
+  <%} else {%>
+    <h2>Debes estar logueado para acceder a esta seccion</h2>
+    <%}%>
+<script>
+  function myFunction() {
+      var input, filter, ul, li, a, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+
+      li = document.getElementsByName("filter");
+      for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("input")[0];
+          txtValue = a.name;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              li[i].style.display = "";
+          } else {
+              li[i].style.display = "none";
+          }
+      }
+  }
+  </script>

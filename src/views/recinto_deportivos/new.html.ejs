@@ -1,0 +1,46 @@
+<%if (currentUser) {%>
+
+    <meta http-equiv="refresh" content="0; URL=/" />
+  
+  
+<%} else{%>
+    <form class="modal-content2" action="<%= createRecinto_deportivoPath %>" method="post">
+        <div class="container">
+            
+        <h1>Registro: Recinto Deportivo</h1>
+        <p></p>
+        
+        <label for="nombre"> Nombre </label>
+        <input class="input_form" type="text" id="nombre" name="nombre" value="<%= recinto_deportivo.nombre%>" 
+        placeholder="Nombre" required/>
+
+            <label for="correo"> Correo </label>
+            <input class="input_form" type="text" id="correo" name="correo" value="<%= recinto_deportivo.correo%>"
+            placeholder="recinto_deportivo@gmail.com" required/>
+
+            <label for="telefono"> Phone Number </label>
+            <input class="input_form" type="text" id="telefono" name="telefono" value="<%= recinto_deportivo.telefono%>"
+            placeholder="Sin incluir +56" required/>
+
+            <label for="ubicacion"> Location </label>
+            <input class="input_form" type="text" id="ubicacion" name="ubicacion" value="<%= recinto_deportivo.ubicacion%>"
+            placeholder="Av. Nombre #" required/>
+
+            <label for="bio"> Description </label>
+            <input class="input_form" type="text" id="bio" name="bio" value="<%= recinto_deportivo.descripcion %>"
+            placeholder="Descripcion" required/>
+
+            <label for="n_canchas"> Cantidad de Canchas: </label>
+            <input class="input_form" type="text" id="n_canchas" name="n_canchas" value="<%= recinto_deportivo.n_canchas%>"
+            placeholder="Por ejemplo: 5" required/>
+
+            <label for="contrasena"> Password: </label>
+            <input class="input_form" type="password" id="contrasena" name="contrasena" value="<%= recinto_deportivo.contrasena%>"
+            placeholder="Contraseña" required/>
+        
+        <div class="clearfix">
+            <button type="submit" class="signupbtn">Sign Up</button>
+        </div>
+        </div>
+    </form>
+<%}%>

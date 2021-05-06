@@ -1,0 +1,15 @@
+Solicitudes
+<p>cantidad de solicitudes: 
+    <%= solicituds.length %></p>
+
+<h1>Solicitudes:</h2>
+    <a href="<%=newSolicitudPath%>">Nueva solicitud</a>
+    <%solicituds.forEach(s => {%>
+        <div>
+            <h2><%=s.id%></h2>
+            <p><%=s.estado%></p>
+            <p><%=s.descripcion%></p>
+            <a href="<%=solicitudPath(s.id)%>">Ver Más<br></a>
+            <a href="<%=deleteSolicitudPath(s.id)%>">Eliminar</a>
+        </div>
+    <% }) %>

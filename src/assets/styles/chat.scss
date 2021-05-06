@@ -1,0 +1,126 @@
+/* Chat containers */
+
+    .containerChatL {
+    border: 2px solid #dedede;
+    background-color: #35A6B4;
+    border-radius: 5px;
+    padding: 0px;
+    margin: 10px 0;
+    margin-right: 30%;
+    }
+    
+    .containerChatR {
+        border: 2px solid #dedede;
+        background-color: #c0c7c8;
+        border-radius: 5px;
+        padding: 0px;
+        margin: 10px 0;
+        margin-left: 30%;
+      }
+
+  
+  /* Darker chat container */
+  .darkerChat {
+    border-color: #ccc;
+    background-color: #ddd;
+  }
+  
+  /* Clear floats */
+  .containerChatR::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  /* Clear floats */
+  .containerChatL::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Style images */
+  .containerChatR img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  
+    /* Style images */
+    .containerChatL img {
+        float: left;
+        max-width: 60px;
+        width: 100%;
+        margin-right: 20px;
+        border-radius: 50%;
+        }
+
+  
+  /* Style time text */
+  .time-rightChat {
+    float: right;
+    color: rgb(20, 15, 15);
+  }
+  
+  /* Style time text */
+  .time-leftChat {
+    float: left;
+    color: rgb(20, 15, 15);
+  }
+
+  .cardChat {
+      display: grid;
+      overflow: scroll;
+      width: 100%;
+      height: 500px;
+  }
+
+  .formChat{
+      display: flex;
+      margin-bottom: 10px;
+  }
+
+  .fieldChat{
+    height: 40px;
+}
+
+.inputChat{
+    width: 350px;
+    height: 30px;
+    margin-left: 15px;
+}
+
+#refresh.submit-buttonChat{
+  height: 30px;
+  width: 80px;
+  margin-left: 15px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+.submit-buttonChat{
+    height: 30px;
+    width: 80px;
+    margin-left: 15px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+
+
+  .cardC {
+    background:  #0d2427;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 10px; /* 5px rounded corners */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 65%;
+  }
+

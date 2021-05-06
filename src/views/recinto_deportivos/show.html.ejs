@@ -1,0 +1,90 @@
+<br>
+<div class="cardscroll-mati">
+<div class="container-center">
+        <h1 class="profile-title white"><%= recinto_deportivo.nombre %></h1>
+</div>
+
+
+<div class="container-grid2">    
+    
+    <div class="tp-container">            
+        <div class="profile-subtitle padding-top1">
+            Informacion
+        </div>
+            <p> <span>  <i class="fas icon-little fa-map-marker-alt"></i></span>  <%= recinto_deportivo.ubicacion %></p>
+            <p> <span> <i class="fas icon-little fa-envelope"></i> </span> <%= recinto_deportivo.correo %></p>
+            <p> <span> <i class="fas icon-little fa-phone-alt"></i> </span><%= recinto_deportivo.telefono %></p>  
+            <br>
+            <% if (currentRecinto) {%>
+                <% if (jwt.decode(currentRecinto.id, 'xxx') == recinto_deportivo.id) {%>
+                    <h5><a href="<%=updateRecinto_deportivosPath(jwt.encode(currentRecinto.id, 'xxx'))%>" class="fas icon-little new-solicitud-icon" >  <span> <i class="fas icon-little fa-tools"></i></span> Editar perfil </a></h5>
+                <%}%>
+            <%}%>
+
+            <% if (currentUser) {%>
+                <a href="<%=newSolicitudPath%>" class="fas icon-little new-solicitud-icon"> <span> <i class="fas icon-little fa-paper-plane"></i> </span>Mandar Solicitud</a>  
+            <% } %>
+    </div>    
+
+    <div class="tp-container">
+        <div class="profile-subtitle padding-top1"> 
+            Descripcion 
+        </div>
+        <p class="font-size22"> <%= recinto_deportivo.bio %> </p>
+    </div>
+
+    
+    <div>
+        <div id='react-map' data-direccion="<%= recinto_deportivo.ubicacion %>"></div>
+        <div id="menu margin-left-5">
+            <input
+            id="streets-v11"
+            type="radio"
+            name="rtoggle"
+            value="streets"
+            checked="checked"
+            />
+            <label for="streets-v11" class="map-toggle">calles</label>
+
+            <input id="light-v10" type="radio" name="rtoggle" value="light" />
+            <label for="light-v10" class="map-toggle">light</label>
+
+            <input id="dark-v10" type="radio" name="rtoggle" value="dark" />
+            <label for="dark-v10" class="map-toggle" >dark</label>
+
+            <input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors" />
+            <label for="outdoors-v11" class="map-toggle" >outdoors</label>
+
+            <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" />
+            <label for="satellite-v9" class="map-toggle" >satelite</label>
+        </div>
+    </div>
+
+    
+    
+    
+
+</div>
+
+<div class="container-grid5050">
+
+    <div class="tp-container height-290">
+        <div class="profile-subtitle padding-top1">
+                <span> <i class="fas icon-container fa-clock"></i> </span>Partidos
+        </div>
+
+        <%- include('_partidos')%> 
+    </div>
+
+    <div class="tp-container height-290">
+        <div class="profile-subtitle padding-top1">
+                <span> <i class="fas icon-container fa-comments"></i> </span> Comentarios
+        </div>
+        <%- include('_cometarios')%> 
+    </div>
+</div>
+<div>
+    <%- include('_canchas')%> 
+</div>
+</div>
+</div>

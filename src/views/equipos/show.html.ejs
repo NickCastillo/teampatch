@@ -1,0 +1,166 @@
+<div class="br-big-sustitute"></div>
+<div class="container-grid3">
+  
+
+  <img src="<%= equipo.foto %>%>" class="card-img" width="160" height="200">
+  
+  <div class=''>
+      <h1 class="profile-title paint-white"><%= equipo.nombre %></h1>
+
+  </div>
+
+</div>
+
+<div class="container-grid5">    
+    
+  <div class="tp-container">
+      <div class="profile-subtitle padding-top1"> 
+          Informacion 
+      </div>
+    <% try {%>
+      <p> <span> <i class="fas icon-little fa-crown"></i> </span> Capitan: <%= capitan[0].nombre %></p>
+    <% } catch { %>
+      <p> <span> <i class="fas icon-little fa-exclamation-circle"></i> </span> No hay capitan asignado</p>
+    <%}%>
+    <p> <span> <i class="fas icon-little fa-user-friends"></i> </span> Miembros: <%= users.length%></p>
+  
+    <!-- Icono para deporte que cambie-->
+    <% if (deporte.nombre == "Football" || deporte.nombre == "Futbol") {%>
+      <p> <span> <i class="fas icon-little fa-futbol"></i> </span> Deporte: <%= deporte.nombre%></p>
+    <%} else if (deporte.nombre == "Basketball" || deporte.nombre == "Basquetbol"){  %>
+      <p> <span> <i class="fas icon-little fa-basketball-ball"></i> </span> Deporte: <%= deporte.nombre%></p>
+    <%} else if (deporte.nombre == "Volleyball" || deporte.nombre == "Voleibol"){%>
+      <p> <span> <i class="fas icon-little fa-volleyball-ball"></i></span> Deporte: <%= deporte.nombre%></p>
+    <%} else {%>
+      <p> <span> <i class="fas icon-little fa-bowling-ball"></i> </span> Deporte: <%= deporte.nombre%></p>
+    <%}%>
+  </div>
+
+  <div class="tp-container">
+      <div class="profile-subtitle padding-top1"> 
+          Descripcion 
+      </div>
+      <p class="font-size22"> <%= equipo.description %> </p>
+  </div>
+
+  <% if (equipo.capitan != user_id) {%>
+    <div class="padding-20">
+      <% if (aceptado == 0) {%>
+        <% if (comprobacion == 0) {%>
+          <button class="button_pop width-auto" onclick="document.getElementById('id01').style.display='block'">Enviar Solicitud</button>
+          <div id="id01" class="modal_pop">
+            <form class="modal-content animate" action="<%=asociarEquipoPath%>" method="post">
+              <div class="container">
+                <label for="descripcion"><b>Mensaje</b></label>
+                <input class="input_pop" type="text" placeholder="Ingresa un mensaje" name="descripcion" required>
+                <input type="hidden" name="equipo_id" value="<%= equipo.id%>">
+                <input type="hidden" name="user_id" value="<%= currentUser.id%>">
+              </div>
+
+              <div class="container white-bg">
+                <button type="submit" class="button_pop">Enviar Solicitud</button>
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn_pop">Cancel</button>
+              </div>
+            </form>
+          </div>
+        <% } else {%>
+          <h3 class="paint-white">Esperando respuesta de solicitud</h3>
+        <% } %>
+      <% } %>
+    </div>
+  <% }  %>
+
+</div>
+
+<div class="container-grid4 margin-bottom-0">    
+  
+      <% if  (equipo.capitan == user_id) {%>
+
+        <div class="tp-container"> 
+            <p class="profile-subtitle"> <span> <i class="fas icon-little fa-bell"></i> </span>Solicitudes Recibidas: <%= solicituds.length%></p>
+              <div class="cardscroll-2">  
+                <% if (solicituds.length) {%>
+                    
+                          <% solicituds.forEach((solicitud) =>{ %>
+                              <li >
+                                  <p> <strong> <%= solicitud.userId.nombre%> </strong></p>
+                                  <p> <span> <i class="far list-icon fa-envelope-open"></i> </span>: <%= solicitud.descripcion%></p>
+                                  <div class="container-grid5050"> 
+                                    <form method="post" action="<%= aceptarPath %>" >
+                                        <input name="_method" type="hidden" value="patch">
+                                        <input name="equipo_id" type="hidden" value="<%= equipo.id %>">
+                                        <input name="user_id" type="hidden" value="<%= solicitud.userId.id %>">
+                                        <input name="id" type="hidden" value="<%= solicitud.id %>">
+                                        <button class="button_pop width-auto"  type="submit" >Aceptar</button>
+                                      </form>
+                                    <form method="post" action="<%= rechazarPath %>" >
+                                        <input name="_method" type="hidden" value="patch">
+                                        <input name="id" type="hidden" value="<%= solicitud.id %>">
+                                        <button class="button_pop width-auto red-bg" type="submit">Rechazar</button>
+                                      </form>
+                                  </div> 
+
+                              </li>
+                
+                          <%})%>
+                    
+                  <%} else {%>
+                    <p> No se han recibido solicitudes</p>
+                  <% } %>
+                </div> <!-- cardscroll -->
+            </div>
+      <% } %>
+  
+  <div class="tp-container">
+    
+      <p class="profile-subtitle"> <span> <i class="fas icon-container fa-user-friends"></i> </span> Miembros </p>
+        <div class="cardscroll-2">  
+          <% if (users.length) {%>
+                  <% users.forEach((user) =>{ %> 
+                          <p class="textalign-left"> <span> <i class="fas fa-user list-icon"></i> </span> <%= user.nombre%></p>  
+                  <%})%>
+          
+          <%} else {%>
+            <p> Este equipo aun no tiene integrantes</p>
+          <% } %>
+          </div> <!-- scroll -->
+  </div>
+
+  <div class="tp-container">
+    
+    <p class="profile-subtitle"> <span> <i class="fas icon-container fa-bookmark"></i> </span> Reservas </p>
+      <div class="cardscroll-2">  
+        <% if (reservas.length) {%>
+                <% reservas.forEach((reserva) =>{ %>
+                    
+                      <% if (reserva.estado  == 1) {%>
+                        <p class="textalign-left yellow">  <%= reserva.canchaId.descripcion %>, <%= reserva.hora %>:00 Hrs, <%= reserva.fecha%> <i class="fas fa-clock font-size20"></i></p>
+                      <% } else if  (reserva.estado  == 0)  {%>
+                        <p class="textalign-left red"> <%= reserva.canchaId.descripcion %>, <%= reserva.hora %>:00 Hrs, <%= reserva.fecha%><i class="fas fa-times font-size20"></i></p>
+                      <% } else if (reserva.estado  == 2) {%>
+                        <p class="textalign-left green">  <%= reserva.canchaId.descripcion %>, <%= reserva.hora %>:00 Hrs, <%= reserva.fecha%><i class="fas fa-check font-size20"></i></p>
+                      <% }%>
+                      
+                    
+                <%})%>
+              
+        
+        <%} else {%>
+          <p> Este equipo aun no tiene reservas</p>
+        <% } %>
+        </div> <!-- scroll -->
+</div>
+
+  
+
+</div>
+
+<script>
+  var modal = document.getElementById('id01');
+  
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+  </script>

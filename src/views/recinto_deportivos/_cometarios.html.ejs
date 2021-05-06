@@ -1,0 +1,20 @@
+<% if (comentarios.length) { %>
+
+    <div class="events">
+            <h2> Comentarios: <%= comentarios.length%> </h2>
+            
+            <div class="cardscroll-3">
+                
+                    <% comentarios.forEach((comentario) => {%>
+                    
+                        <p> <span> <i class="fas icon-little2 fa-comment"></i> </span> <%= comentario.contenido %></p>       
+                    
+                    <%});%>
+                
+            </div>
+
+    </div>
+       
+    <% } else {%>
+    <p> No hay comentarios </p>
+    <%}%>

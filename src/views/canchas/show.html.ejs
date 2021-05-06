@@ -1,0 +1,105 @@
+<div class="br-big-sustitute"></div>
+<div class="br-big-sustitute"></div>
+<% if (aviso){ %>
+  <%if(aviso === -1) {%>
+    <div class="errors">
+      <h3 class="profile-subtitle">No hay disponibilidad en dicho horario</h3>
+    </div>
+    <%} if(aviso === 1){%>
+    <div class="errors">
+      <h3 class="profile-subtitle">Reserva solicitada con éxito</h3>
+    </div>
+    <%} if(aviso === 0){%>
+      <div class="errors">
+        <h3 class="profile-subtitle"></h3>
+      </div>
+    <%}%>
+<% } %>
+<div class="container-grid40">
+    <div class=''>
+    </div>
+    <div class=''>
+        <h9 class="cookie-font main-title2"><%= cancha.descripcion %></h9>
+        <h3 class="profile-subtitle">Precio: $<%= cancha.precio%></h3>
+    </div>
+</div>
+
+<div class="container-grid7">
+  <div class=''>
+    <img src="<%=cancha.foto%>" alt="Foto" width="600">
+  </div>
+
+  <div class=''>
+
+    <p class="texto"> Dimensiones de la cancha: <%=cancha.largo%> x <%=cancha.ancho%> </p>
+
+    <% if (cancha.disponible){%>
+      <p class="texto"> La cancha se encuentra disponible</p>
+    <%} else {%>
+    <p class="texto"> La cancha no se encuentra disponible</p>  
+    <%}%>
+
+
+    <div class="container-center">
+        <button class="button_pop width-auto" onclick="document.getElementById('id01').style.display='block'">Reservar</button>
+          <div id="id01" class="modal_pop">
+            <form class="modal-content animate" action="<%=createReservaPath%>" method="post">
+              <div class="container">
+                <label for="fecha">Fecha</label>
+                <input class="input_pop" type="date" name="fecha" required>
+                
+                <div class="br-sustitute"></div>
+                <div class="br-sustitute"></div>
+  
+                <label for="hora">Hora:</label>
+                <select name="hora">
+                  <option value="8">8:00</option>
+                  <option value="9">9:00</option>
+                  <option value="10">10:00</option>
+                  <option value="11">11:00</option>
+                  <option value="12">12:00</option>
+                  <option value="13">13:00</option>
+                  <option value="14">14:00</option>
+                  <option value="15">15:00</option>
+                  <option value="16">16:00</option>
+                  <option value="17">17:00</option>
+                  <option value="18">18:00</option>
+                  <option value="19">19:00</option>
+                  <option value="20">20:00</option>
+                </select>
+                
+                <div class="br-sustitute"></div>
+                <div class="br-sustitute"></div>
+                
+                <label for="equipoId">Equipo</label>
+                <select name="equipoId" id="equipoId">
+                  <% for (var i = 0; i<equipos.length; i++) { %>
+                      <option value="<%= equipos[i].dataValues.id %>"> <%= equipos[i].dataValues.nombre %> </option>
+                  <% } %>
+              </select>
+  
+                <input type="hidden" name="canchaId" value="<%= cancha.id%>">
+                <input type="hidden" name="estado" value="1">
+              </div>
+  
+              <div class="container white-bg">
+                <button type="submit" class="button_pop">Reservar</button>
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn_pop">Cancel</button>
+              </div>
+            </form>
+  
+      </div>
+
+
+  </div>
+
+  
+
+</div>
+
+
+
+    </div>
+
+          
+</div>

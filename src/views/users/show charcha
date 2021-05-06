@@ -1,0 +1,62 @@
+<br><br>
+<div class='container-center'>
+
+  <row>
+    
+      <div class="col2 col2-left">
+        <div class="profile-picture">
+          <img src="<%= usuario.foto %>%>" class="card-img" width="160" height="200">
+        </div>
+      </div>
+
+      <div class="col2 col2-right">
+
+        <div class='stick-left'>
+            <div class='center'>
+                <h1 class="profile-title"><%= usuario.nombre %></h1>
+                <h3 class="profile-subtitle"><%= usuario.username %></h1>
+              </div>
+        </div>
+      </div>
+  </row>
+
+</div>
+
+  <row>
+    <div class="col2 col3-left">
+        <div class="">
+
+            <p> Descripcion ----- </p>
+            <p> Numero de Telefono: <%= usuario.telefono%></p>
+            <p> Email: <%= usuario.correo %></p>
+            <% if (jwt.decode(currentUser.id, 'xxx') == usuario.id) {%>
+                <h5><a href="<%=updateUsuariosPath(currentUser.id)%>"> Editar perfil </a></h5>
+              <%}%>
+
+
+        </div>
+        
+
+    </div>
+    
+    <div class="col2 col3-middle">
+      
+          <%- include('_equipos')%>   
+
+      </div>
+          
+    </div>
+  
+
+  </row>
+
+
+
+</div>
+
+<br>
+
+<a href="<%=userindexPath%>">Volver</a>
+
+
+

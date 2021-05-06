@@ -1,0 +1,57 @@
+<br>
+
+<div id="mensajes-app"></div>
+<h1 class="profile-subtitle">Chat con <%= usuario2.nombre %></h1>
+
+<div class="cardC">
+  <div class = "cardChat">
+    <br>
+    <%mensajes.forEach((m) => { %>
+    <%if (m.userId == usuario1.id) {%>
+
+    <div class="containerChatR">
+      <img src="<%=usuario1.foto%>" alt="Foto">
+      <p><%=usuario1.nombre%>: <%= m.contenido %></p>
+      <span class="time-rightChat"><%= m.createdAt %></span>
+    </div>
+
+    <%} else {%>
+
+      <div class="containerChatL">
+        <img src="<%=usuario2.foto%>" alt="Foto">
+        <p><%=usuario2.nombre%>: <%= m.contenido %></p>
+        <span class="time-leftChat"><%= m.createdAt %></span>
+      </div>
+        
+        <%}%>
+    <% }); %>
+
+    </div>
+    <form method="post" action="<%= createMensajePath(emisor_jwt, receptor_jwt) %>" class = "formChat">
+
+      <div class="fieldChat">
+          <label for="name"></label>
+          <input class = "inputChat" type="text" id="contenido" name="contenido"/>
+        </div>
+        <div class="field">
+          <input type="hidden" id="userId" name="userId" value="<%= usuario1.id %>" />
+        </div>
+        <div class="field">
+          <input type="hidden" id="userId2" name="userId2" value="<%= usuario2.id %>" />
+        </div>
+    
+          <input type="submit" id="refresh" value="Enviar" class="submit-buttonChat"/>
+      </form>
+      
+
+  </div>
+  <a class="button1" onclick=goBack()> Volver</a>
+  
+  <script>
+      function goBack() {
+        window.history.back();
+      }
+      </script>
+
+</div>
+

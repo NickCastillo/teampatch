@@ -1,0 +1,17 @@
+<h2> Id: <%= partido.id %></h2>
+<p> Fecha: <%= (partido.fecha.getDate()+1)+"-"+ (partido.fecha.getMonth()+ 1) + "-" + partido.fecha.getFullYear() %></p>
+<p> Hora:  <%= partido.hora %></p>
+<p> Resultado:  <%= partido.resultado %></p>
+<a href="<%= updatePartidosPath(partido.id) %>"> Editar <br></a>
+<div>
+    <h2>Tiene <%= equipos.length%> equipos asociados.</h2>
+    <% if (equipos.length) {%>
+        <ul>
+            <% equipos.forEach((equipo) =>{ %>
+                <li >
+                    <h3><%= equipo.nombre%></h3>
+                </li>
+            <%})%>
+        </ul>
+    <%}%>
+</div>

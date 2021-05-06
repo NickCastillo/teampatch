@@ -1,0 +1,106 @@
+<%if (currentUser) {%>
+
+  <div class="br-sustitute"></div>
+  <div class="br-sustitute"></div>
+
+  <h1 class="cookie-font main-title">TeamPatch</h1>
+  
+  <div class="home-container">
+
+    <div class="row row-height home-container">
+      
+      <div class="column-3 left">
+
+        <div class="br-sustitute"></div>
+        <div class="br-sustitute"></div>
+        
+        <div class="br-big-sustitute"></div>
+        <%- include('_profilecard')%>    
+      </div>
+
+      <div class="column-3 middle">
+          <h3 class="no-margin-vert profile-subtitle"> Jugadores </h3>
+          <div class="cardscroll">
+              <div class="card-container">
+                <div class="card-body no-padding-top">
+                  <%- include('_cards-users')%>   
+                </div>
+              </div>      
+          </div>
+      </div>
+        
+      <div class="column-3 right">
+        <h3 class="no-margin-vert profile-subtitle"> Recintos Deportivos </h3>
+          <div class="cardscroll">
+            <div class="card-container">
+                <div class="card-body no-padding-top">
+                    <%- include('_cards-recintos')%>
+                </div>
+            </div>  
+          </div> 
+      </div>
+
+
+      <div class="row row-height">
+        
+      </div>
+      
+  </div>
+
+  <%} else if (currentRecinto) {%>
+
+    <div class="br-sustitute"></div>
+    <div class="br-sustitute"></div>
+
+    <h1 class="cookie-font main-title">TeamPatch</h1>
+    
+    <div class="home-container">
+
+        <div class="row row-height home-container">
+  
+            <div class="column-3 left">
+
+                <div class="br-big-sustitute"></div>
+                  <%- include('_profilecard_recinto')%>    
+            </div>
+
+
+        <div class="column-3 middle">
+            <div class="cardscroll">
+              <div class="card-container">
+                  <div class="card-body">
+                      <%- include('_cards-users')%>   
+                  </div>
+              </div>  
+              
+            </div>
+        </div>
+
+      <div class="column-3 right">
+        <div class="cardscroll">
+          <div class="card-container">
+              <div class="card-body">
+                  <%- include('_cards-recintos')%>
+              </div>
+          </div> 
+        </div>     
+      </div>
+    </div>
+    
+  <%} else{%>
+    <div class="br-sustitute"></div>
+    <div class="br-sustitute"></div>
+
+    <h1 class="cookie-font landing-title font-size125">Bienvenido a TeamPatch!</h1>
+    
+    <div class="index-subtitle-container">
+      <p class="landing-subtitle"> Una aplicacion web creada por PRSteam </p>
+      <div class="br-big-sustitute"></div>
+      <p class="landing-subsubtitle"> TeamPatch te otorga todas las herramientas 
+        necesarias para poder organizar partidos de distintos deportes. Desde poder crear o 
+        formar parte de un equipo nuevo, hasta comunicarte con otros usuarios o algun recinto 
+        deportivo e incluso, poder reservar una cancha, todo directamente desde TeamPatch. </p>
+
+    </div>
+
+  <%}%>

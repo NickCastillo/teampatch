@@ -1,0 +1,175 @@
+<%if (currentUser) {%>
+<h1 class="busqueda-title">Busqueda:</h2> 
+  <div class="container-grid40">    
+    
+    <div >     
+      <div class="br-sustitute"></div>
+    
+        <div class="profile-subtitle padding-top1">
+            Filtro
+            <hr/>
+        </div>
+        <div id="myBtnContainer">
+          <a class="profile-subtitle" >Deporte:</a>
+          <button class="btn_filter active" onclick="filterSelection('all')" > Show all</button>
+          <% deportes.forEach(async deporte => { %>
+            <button class="btn_filter" onclick="filterSelection('<%= deporte.nombre %>')"> <%= deporte.nombre %></button>
+          <%})%>
+        </div>
+    </div>    
+
+    <div >
+      <div class="br-sustitute"></div>
+
+        <div class="profile-subtitle padding-top1"> 
+            Equipos:
+        </div>
+        <div class="cardscroll">
+
+          <div class="card-container">
+              <div class="card-body ">
+              <% equipos.forEach(async equipo => { %>
+              <div class="filterClass <%=equipo.deporteId.nombre%>">         
+                <div class="blog-card alt filterClass <%=equipo.deporteId.nombre%>" >
+                    <div class="meta">
+                    <!--<img src="<%=equipo.foto%>" class="card-img" alt="...">-->
+                    <div class="photo" style="background-image: url(<%=equipo.foto%>)"></div>
+                      <ul class="details">
+                          <li class="author"><a><%=equipo.nombre%></a> </li>
+                            <h4>Miembros:</h4>
+                            
+                              <ul>
+                                          
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                    <div class="description">
+                      <h1><%=equipo.nombre%></h1>
+                      <h2><%=equipo.deporteId.nombre%></h2>
+                      <p class="card-text"><%= equipo.description %></p>
+                      <p class="read-more">
+                        <a class="button2" href="<%= equiposPath(jwt.encode(equipo.id, 'xxx')) %>">Ver perfil</a>
+                      </p>
+                    </div>
+                </div>
+              </div>    
+              <%})%>
+            </div>
+          </div>
+    
+      </div>
+    </div>
+
+</div>
+  
+  <%} if(currentRecinto){%>
+    <h1 class="busqueda-title">Busqueda:</h2> 
+      <div class="container-grid40">    
+        
+        <div >     
+          <div class="br-sustitute"></div>
+      
+            <div class="profile-subtitle padding-top1">
+                Filtro
+                <hr/>
+            </div>
+            <div id="myBtnContainer">
+              <a class="profile-subtitle" >Deporte:</a>
+              <button class="btn_filter active" onclick="filterSelection('all')" > Show all</button>
+              <% deportes.forEach(async deporte => { %>
+                <button class="btn_filter" onclick="filterSelection('<%= deporte.nombre %>')"> <%= deporte.nombre %></button>
+              <%})%>
+            </div>
+        </div>    
+    
+        <div >
+          <div class="br-sustitute"></div>
+
+            <div class="profile-subtitle padding-top1"> 
+                Equipos:
+            </div>
+            <div class="cardscroll">
+    
+              <div class="card-container">
+                  <div class="card-body ">
+                  <% equipos.forEach(async equipo => { %>
+                  <div class="filterClass <%=equipo.deporteId.nombre%>">         
+                    <div class="blog-card alt filterClass <%=equipo.deporteId.nombre%>" >
+                        <div class="meta">
+                        <!--<img src="<%=equipo.foto%>" class="card-img" alt="...">-->
+                        <div class="photo" style="background-image: url(<%=equipo.foto%>)"></div>
+                          <ul class="details">
+                              <li class="author"><a><%=equipo.nombre%></a> </li>
+                                <h4>Miembros:</h4>
+                                
+                                  <ul>
+                                              
+                                  </ul>
+                                </li>
+                              </ul>
+                            </div>
+                        <div class="description">
+                          <h1><%=equipo.nombre%></h1>
+                          <h2><%=equipo.deporteId.nombre%></h2>
+                          <p class="card-text"><%= equipo.description %></p>
+    
+                        </div>
+                    </div>
+                  </div>    
+                  <%})%>
+                </div>
+              </div>
+        
+          </div>
+        </div>
+    
+    </div>
+      
+    <%}%>
+
+    <script>
+      filterSelection("all")
+      function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("filterClass");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+          w3RemoveClass(x[i], "show_filter");
+          if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show_filter");
+        }
+      }
+      
+      function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+        }
+      }
+      
+      function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        
+        for (i = 0; i < arr2.length; i++) {
+          while (arr1.indexOf(arr2[i]) > -1) {
+            arr1.splice(arr1.indexOf(arr2[i]), 1);     
+          }
+        }
+        element.className = arr1.join(" ");
+        
+      }
+      
+      var btnContainer = document.getElementById("myBtnContainer");
+      var btns = btnContainer.getElementsByClassName("btn_filter");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function(){
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
+      </script>

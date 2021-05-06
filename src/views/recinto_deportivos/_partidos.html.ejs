@@ -1,0 +1,20 @@
+<% if (partidos.length) { %>
+    
+    <div class="events">    
+        
+            <h2> Partidos: <%= partidos.length%> </h2>       
+                <div class="cardscroll-3">
+                    <ul class="padding-margin-0">
+                        <% partidos.forEach((partido) => {%>
+                            <li class="event">
+                                <p> <%= partido.fecha%> </p>                        
+                            </li>
+                        <%});%>
+                    </ul>
+                </div>
+
+    </div>
+       
+    <% } else {%>
+    <p>No hay partidos</p>
+    <%}%>

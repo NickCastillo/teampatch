@@ -1,0 +1,19 @@
+<form method="post" action="<%= createDeportesPath %>">
+    <% if (locals.errors) { %>
+        <div class="errors">
+            <p>Deporte no pudo ser creado debido a los siguientes errores:</p>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li> <%= error.path %>: <%= error.message %></li>
+               <% }); %>
+            </ul>
+        </div>
+    <% } %>
+    <div class="field">
+        <label for ="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre" value="<%= deporte.nombre %>"/>
+    </div>
+    <div class="actions">
+        <input type="submit" value="Crear"/>
+    </div>
+</form> 
